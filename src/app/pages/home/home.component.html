@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Van & Banner</title>
+</head>
+
+<body>
+
+
+
+  <div class="van">
+    <!-- Your van content goes here -->
+  </div>
+  <div class="banner">
+    <!-- @for (imagenes of images; track $index ) { -->
+      <img  src="{{images[currentImageIndex]}}" alt="Banner">
+    <!-- } @empty {
+      Empty list of users
+    } -->
+    
+    <div class="flecha flecha-izquierda" (click)="onLeftArrowClick()">
+      <img id="my-image" src="./../../../assets/Imagenes/flecha-izquierda.png" alt="flecha-izquierda" >
+    </div>
+    <div class="flecha flecha-derecha" (click)="onRightArrowClick()"wwwww>
+      <img id="my-image" src="./../../../assets/Imagenes/flecha-derecha.png" alt="flecha-derecha" >
+    </div>
+  </div>
+
+  <div class="container">
+  <div class="sidebar">
+    <ul>
+      <li>Reservar</li>
+      <li>Cancelar Reserva</li>
+      <li>Visualizar reservas</li>
+    </ul>
+ </div>
+ <div class="content">
+    @for(salon of salas(); track $index){
+      <div class="card" style="width: 18rem;">
+        <img src="{{salon.imagen}}" class="card-img-top" alt="salon">
+        <div class="card-body">
+          <h5 class="card-title">{{salon.idrecurso}}</h5>
+          <p class="card-text">{{salon.idtiporecursopkfk}}</p>
+          <a (click)="reservarRecurso(salon.idrecurso, salon.idtiporecursopkfk)" href="recurso/{{salon.idrecurso}}{{salon.idtiporecursopkfk}}"   class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    }
+ </div>
+</div>
+
+</body>
+
+</html>

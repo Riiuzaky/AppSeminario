@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header</title>
+</head>
+
+<body>
+
+<div class="contenedor-header">
+    <div class="contenedor-Logo">
+        <img src="./../../../assets/Imagenes/Logo.jpg" alt="img-logo" >
+    </div>
+
+    <div class="contenedor-Busqueda">
+        <div class="buscador">
+            <input type="text" placeholder="Buscar" class="input-busqueda">
+            <button class="btn-buscar">
+                <img src="./../../../assets/Imagenes/lupa.png" alt="lupa">
+            </button>
+        </div>
+        
+    </div>
+
+    <div class="contenedor-Perfil">
+        @if (usuarioLogueado) {
+            <ul class="lista-sitios">
+                <li><a href="#" class="btn btn-primary">Home</a></li>
+            </ul>
+            <button>
+                <img src="./../../../assets/Imagenes/Logo-usuario.png" alt="icono-usuario">
+            </button>
+        }@else {
+            <ul class="lista-sitios">
+                <li><a href="#" class="btn btn-primary">Home</a></li>
+                <li><a href="Login" class="btn btn-primary">Login</a></li>
+            </ul>
+        }
+        
+    </div>
+
+</div>
+  
+
+</body>
+
+</html>
