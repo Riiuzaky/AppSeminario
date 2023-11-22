@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
     // Guardar en el localStorage
     localStorage.setItem('id', `${idRecurso}`);
     localStorage.setItem('idTipo', `${idTipoRecurso}`);
+    localStorage.setItem('Usuario', `207874402`);
   }
 
   async getSalas() {

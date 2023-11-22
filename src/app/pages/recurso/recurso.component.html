@@ -17,7 +17,8 @@
     </div>
     }
     <div class="calendario-content">
-      <app-calendario></app-calendario>
+      <app-calendario (fechaHoraSeleccionada)="onFechaHoraSeleccionada($event)"></app-calendario>
+      <!-- <button (click)="reservar()">Reservar</button> -->
     </div>
   </div>
 </body>

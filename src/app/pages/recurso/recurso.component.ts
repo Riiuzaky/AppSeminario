@@ -1,6 +1,7 @@
 import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarioComponent } from './../../components/calendario/calendario.component';
+import { ReservasServiceComponent } from './../../components/reservas-service/reservas-service.component';
 
 @Component({
     selector: 'app-recurso',
@@ -11,7 +12,10 @@ import { CalendarioComponent } from './../../components/calendario/calendario.co
 })
 export class RecursoComponent {
 
-  constructor() {
+  fechaHoraInicio!: string;
+  fechaHoraFin!: string;
+
+  constructor(private ReservasServiceComponent: ReservasServiceComponent) {
     this.getRecurso();
   }
 
@@ -32,6 +36,51 @@ export class RecursoComponent {
 
   }
 
+ 
+
+  // ...
+
+  onFechaHoraSeleccionada(fechaHora: string) {
+    this.fechaHoraInicio = fechaHora;
+    const fechaObjeto = new Date(fechaHora);
+    const fechaObjetoModificada = new Date(fechaObjeto);
+    fechaObjetoModificada.setHours(fechaObjetoModificada.getHours() + 2);
+
+    const fechaFormateadaOriginal = formatearFecha(fechaObjeto);
+    const fechaFormateadaModificada = formatearFecha(fechaObjetoModificada);
+    
+    
+    this.fechaHoraInicio = fechaFormateadaOriginal;
+    this.fechaHoraFin = fechaFormateadaModificada;
+    console.log(this.fechaHoraInicio);
+    console.log(this.fechaHoraFin);
+    this.reservar();
+  }
+
+ 
+   
+  reservar() {
+    const idRecurso = localStorage.getItem('id');
+    const idTipoR = localStorage.getItem('idTipo');
+    const idUsuario = localStorage.getItem('Usuario');
+    const idEstado = 'activo';
+  
+    const bookingData = {
+      idRecurso: idRecurso,
+      idTipoR: idTipoR,
+      idUsuario: idUsuario,
+      idEstado: idEstado,
+      calendarios: [
+        {
+          fechaInicio: this.fechaHoraInicio ,
+          fechaFin: this.fechaHoraFin
+        }
+      ],
+    };
+  
+    this.ReservasServiceComponent.reservar(bookingData);
+  }
+
 }
 
 
@@ -42,4 +91,12 @@ interface Recurso {
   descripcion: string,
   imagen: any
 
+}
+
+function pad(numero: any) {
+  return numero < 10 ? '0' + numero : numero;
+}
+
+function formatearFecha(fecha: any) {
+  return `${fecha.getFullYear()}-${pad(fecha.getMonth() + 1)}-${pad(fecha.getDate())} ${pad(fecha.getHours())}:${pad(fecha.getMinutes())}:${pad(fecha.getSeconds())}`;
 }

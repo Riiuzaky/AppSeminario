@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
@@ -16,4 +16,12 @@ declare global {
 })
 export class CalendarioComponent {
   
+  @Output() fechaHoraSeleccionada = new EventEmitter<string>();
+
+  guardarFechaHora() {
+    const datetimeInput = document.getElementById('datetime') as HTMLInputElement;
+    const fechaHora = datetimeInput.value;
+    this.fechaHoraSeleccionada.emit(fechaHora);
+  }
+
 }

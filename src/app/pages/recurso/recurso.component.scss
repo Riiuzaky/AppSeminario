@@ -5,7 +5,7 @@
     padding: 10px;
     box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
     overflow-y: auto;
 
@@ -13,23 +13,25 @@
 
 .card img {
     width: 100%;
-    height: 25rem;
+    height: 100%;
     border-bottom: 1px solid #efebe5;
 }
 
 .card {
-    width: 100%;
+    width: 50%;
+    height: 50vh;
     border: 10px solid #efebe5;
     background-color: #ffffff;
     overflow: hidden;
+    margin-right: 10px;
    
 }
 
 
 
 .calendario-content {
-    width: 100%;
-    height: 100vh;
+    width: 50%;
+    height:50vh;
     overflow-y: auto;
 
   }
