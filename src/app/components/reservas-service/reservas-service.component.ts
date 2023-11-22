@@ -33,18 +33,16 @@ export class ReservasServiceComponent {
       });
 
       if (!response.ok) {
-        throw new Error('Error al reservar');
+        console.log(response);
       }
 
       const responseData = await response.json();
       console.log('Reserva exitosa:', responseData);
 
-      // Puedes manejar el resultado de la reserva aquí
+      
 
     } catch (error) {
-      console.error('Error al reservar:', error);
-
-      // Puedes manejar errores aquí
+      console.log("Hubo un problema con la reserva", error);
     }
   }
 }
