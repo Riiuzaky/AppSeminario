@@ -19,7 +19,7 @@ export const routes: Routes = [
         component: HeaderComponent
     },
     {
-        path: 'recurso/:id',
+        path: "recurso/:id",
         component: RecursoComponent
     }
 
