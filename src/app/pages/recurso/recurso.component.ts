@@ -1,12 +1,13 @@
 import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CalendarioComponent } from './../../components/calendario/calendario.component';
 
 @Component({
-  selector: 'app-recurso',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './recurso.component.html',
-  styleUrl: './recurso.component.scss'
+    selector: 'app-recurso',
+    standalone: true,
+    templateUrl: './recurso.component.html',
+    styleUrl: './recurso.component.scss',
+    imports: [CommonModule, CalendarioComponent]
 })
 export class RecursoComponent {
 
@@ -22,7 +23,7 @@ export class RecursoComponent {
     this.cargando = signal(true);
     const id = localStorage.getItem('id');
     const idTipo = localStorage.getItem('idTipo');
-    const res = await fetch(`https://back-project-johan.onrender.com/resources/${id}?idTipo=${idTipo}`);
+    const res = await fetch(`https://back-project-johan.onrender.com/resources/byid?idRecurso=${id}&idTipoR=${idTipo}`);
     const resJson = await res.json();
     const conversion = resJson.data.map((value: { recurso: Recurso; }) => value.recurso);
     console.log(conversion);

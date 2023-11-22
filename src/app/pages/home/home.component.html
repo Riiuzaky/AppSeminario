@@ -38,6 +38,7 @@
       <li>Visualizar reservas</li>
     </ul>
  </div>
+ 
  <div class="content">
     @for(salon of salas(); track $index){
       <div class="card" style="width: 18rem;">
@@ -45,7 +46,7 @@
         <div class="card-body">
           <h5 class="card-title">{{salon.idrecurso}}</h5>
           <p class="card-text">{{salon.idtiporecursopkfk}}</p>
-          <a (click)="reservarRecurso(salon.idrecurso, salon.idtiporecursopkfk)" href="recurso/{{salon.idrecurso}}{{salon.idtiporecursopkfk}}"   class="btn btn-primary">Reservar</a>
+          <a (click)="reservarRecurso(salon.idrecurso, salon.idtiporecursopkfk)" href="recurso/{{salon.idtiporecursopkfk}}{{salon.idrecurso}}"   class="btn btn-primary">Reservar</a>
         </div>
       </div>
     }

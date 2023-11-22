@@ -1,12 +1,16 @@
 import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
+
+
+
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+    selector: 'app-home',
+    standalone: true,
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss',
+    imports: [CommonModule]
 })
 export class HomeComponent implements OnInit {
 
@@ -17,8 +21,12 @@ export class HomeComponent implements OnInit {
   ];
   currentImageIndex = 0;
 
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  
   ngOnInit(): void {
 
+
+    
     setInterval(() => {
       this.changeImage();
     }, 5000);
@@ -27,8 +35,12 @@ export class HomeComponent implements OnInit {
 
   }
 
+
+ 
+
   salas: WritableSignal<Recurso[]> = signal([])
   cargando = signal(false);
+
 
   changeImage() {
     this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
@@ -55,9 +67,25 @@ export class HomeComponent implements OnInit {
     const conversion = resJson.data.map((value: { recurso: Recurso; }) => value.recurso);
     this.salas.set(conversion);
     this.cargando = signal(false);
+    this.changeDetectorRef.detectChanges();
+  }
+
+
+  async setSalasPrueba(filtro: string){
+    this.cargando = signal(true);
+    const res = await fetch( `https://back-project-johan.onrender.com/resources/byid?idRecurso=${filtro}&idTipoR=Salon`);
+    const resJson = await res.json();
+    const conversion = resJson.data.map((value: { recurso: Recurso; }) => value.recurso);
+    this.salas.set(conversion);
+    console.log(this.salas());
+    this.cargando = signal(false);
+    this.changeDetectorRef.detectChanges();
   }
 
 }
+
+
+
 
 interface Recurso {
 

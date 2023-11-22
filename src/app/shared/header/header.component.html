@@ -17,8 +17,8 @@
 
     <div class="contenedor-Busqueda">
         <div class="buscador">
-            <input type="text" placeholder="Buscar" class="input-busqueda">
-            <button class="btn-buscar">
+            <input #filtroTexto type="text"  placeholder="Buscar" class="input-busqueda">
+            <button class="btn-buscar" (click)="filtrarSalas()">
                 <img src="./../../../assets/Imagenes/lupa.png" alt="lupa">
             </button>
         </div>

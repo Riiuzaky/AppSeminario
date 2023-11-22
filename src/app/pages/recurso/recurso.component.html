@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,18 +12,14 @@
 
   <div class="content">
     @for(recurso of recurso(); track $index){
-      <div class="card" style="width: 18rem;">
-        <img src="{{recurso.imagen}}" class="card-img-top" alt="salon">
-        <div class="card-body">
-          <h5 class="card-title">{{recurso.idrecurso}}</h5>
-          <p class="card-text">{{recurso.idtiporecursopkfk}}</p>
-          <p class="card-text">{{recurso.descripcion}}</p>
-        </div>
-      </div>
+    <div class="card">
+      <img src="{{recurso.imagen}}" class="card-img-top" alt="salon">
+    </div>
     }
- </div>
-  
-
+    <div class="calendario-content">
+      <app-calendario></app-calendario>
+    </div>
+  </div>
 </body>
 
 </html>
