@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Seleciona tu fecha y hora de reserva</title>
-  </head>
-  <body>
-    <h1>Seleciona tu fecha y hora de reserva</h1>
-    <input type="datetime-local" id="datetime" name="datetime">
-    <button (click)="guardarFechaHora()">Reservar</button>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Calendar Widget</title>
+</head>
+
+<body>
+  <div id="cal">
+    <div class="header">
+      <span class="left button" id="prev" (click)="changeMonth(-1)"> ⟨ </span>
+      <span class="month-year" id="year"> {{ year }}-{{ monthString }}</span>
+      <span class="right button" id="next" (click)="changeMonth(1)"> ⟩ </span>
+    </div>
+     
+    <div id="cal-frame">
+      <table>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td
+              *ngFor="let cell of row"
+              [class.sun]="cell === 'sun'"
+              [class.sat]="cell === 'sat'"
+              [class.off]="cell === 'off'"
+              [class.selected]="isSelectedDay && parseDay(cell) === day"
+              [class.disabled]="isDayDisabled(year, month, parseDay(cell))"
+              (click)="selectDay(cell)"
+              [id]="'day-' + cell"
+            >
+              {{ cell }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="time-picker">
+        <select id="hour" name="hour" size="5">
+          <option *ngFor="let hour of hours" [value]="hour" (click)="changeTime(hour)"> {{ hour }} </option>
+        </select>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
 </html>

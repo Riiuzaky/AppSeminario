@@ -1,6 +1,7 @@
 import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { ReservasComponent } from './../../pages/reservas/reservas.component';
 
 
 
@@ -10,7 +11,7 @@ import { ChangeDetectorRef } from '@angular/core';
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    imports: [CommonModule]
+    imports: [CommonModule,ReservasComponent]
 })
 export class HomeComponent implements OnInit {
 

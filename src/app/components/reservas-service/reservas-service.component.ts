@@ -42,7 +42,7 @@ export class ReservasServiceComponent {
       
 
     } catch (error) {
-      console.log("Hubo un problema con la reserva", error);
+      console.log("Hubo un prob lema con la reserva", error);
     }
   }
 }
