@@ -5,7 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">{{salon.idrecurso}}</h5>
         <p class="card-text">{{salon.idtiporecursopkfk}}</p>
-        <a (click)="reservarRecurso(salon.idrecurso, salon.idtiporecursopkfk)" href="recurso/{{salon.idtiporecursopkfk}}{{salon.idrecurso}}"   class="btn btn-primary">Reservar</a>
+        <a id="{{salon.idtiporecursopkfk}}{{salon.idrecurso}}" (click)="reservarRecurso(salon.idrecurso, salon.idtiporecursopkfk)" href="recurso/{{salon.idtiporecursopkfk}}{{salon.idrecurso}}"   class="btn btn-primary">Reservar</a>
       </div>
     </div>
   }
