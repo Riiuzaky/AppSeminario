@@ -16,8 +16,8 @@
                     <td>{{ detalle.idReserva }}</td>
                     <td>{{ detalle.detalle.fi }}</td>
                     <td>{{ detalle.detalle.ff }}</td>
-                    <td><button>Reservar</button></td>
-                    <td><button>Borrar</button></td>
+                    <td><button (click)="cancelarReserva(detalle.idReserva)">Cancelar</button></td>
+                    <td><button (click)="borrarReserva(detalle.idReserva)">Borrar</button></td>
                 </tr>
                 
             }

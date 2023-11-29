@@ -115,8 +115,13 @@ export class CalendarioComponent {
   // Nuevo método para verificar si un día está desactivado
   isDayDisabled(year: number, month: number, day: number): boolean {
     const currentDate = new Date();
+    const daysInMonth = new Date(year, month, 0).getDate();
     const compareDate = new Date(year, month - 1, day+1);
   
+    if (day > daysInMonth) {
+      return true;
+    }
+
     return compareDate <= currentDate;
   }
   
