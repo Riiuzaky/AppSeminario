@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginComponent {
-
+  error: string | null = null;
   cargando = signal(false);
   constructor(private router: Router, private authService: ServiceAuthComponent) { }
 
@@ -41,6 +41,7 @@ export class LoginComponent {
 
   async login() {
       this.cargando = signal(true);
+      this.error = null; 
 
       const usuario = this.getUser();
       const password = this.getPassword();
@@ -71,12 +72,15 @@ export class LoginComponent {
           this.router.navigateByUrl('/home');
         } else {
           console.error('Error en la solicitud POST:', res.statusText);
+          this.error = 'Error de autenticación. Por favor, verifica tu usuario y contraseña.';
+          this.cargando = signal(false);
           // Maneja el error según tus necesidades
           console.log("else");
         }
       } catch (error) {
         console.error('Error en la solicitud POST:', error);
-        // Maneja el error según tus necesidades
+        this.error = 'Error de conexión. Por favor, intenta nuevamente más tarde.';
+        this.cargando = signal(false);
         console.log("catch");
       }
   }
