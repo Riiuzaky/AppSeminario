@@ -232,7 +232,8 @@ body {
 td.disabled {
   color: #ccc; /* Cambia el color de texto para indicar que está deshabilitado */
   pointer-events: none; /* Evita la interacción con el elemento */
-  cursor: not-allowed; /* Cambia el cursor para indicar que no es interactivo */
+  cursor: not-allowed;
+  background-color: #cecaca47; /* Cambia el cursor para indicar que no es interactivo */
 }
 
 
