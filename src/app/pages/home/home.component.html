@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,31 +16,41 @@
   </div>
   <div class="banner">
     <!-- @for (imagenes of images; track $index ) { -->
-      <img  src="{{images[currentImageIndex]}}" alt="Banner">
+    <img src="{{images[currentImageIndex]}}" alt="Banner">
     <!-- } @empty {
       Empty list of users
     } -->
-    
+
     <div class="flecha flecha-izquierda" (click)="onLeftArrowClick()">
-      <img id="my-image" src="./../../../assets/Imagenes/flecha-izquierda.png" alt="flecha-izquierda" >
+      <img id="my-image" src="./../../../assets/Imagenes/flecha-izquierda.png" alt="flecha-izquierda">
     </div>
-    <div class="flecha flecha-derecha" (click)="onRightArrowClick()"wwwww>
-      <img id="my-image" src="./../../../assets/Imagenes/flecha-derecha.png" alt="flecha-derecha" >
+    <div class="flecha flecha-derecha" (click)="onRightArrowClick()">
+      <img id="my-image" src="./../../../assets/Imagenes/flecha-derecha.png" alt="flecha-derecha">
     </div>
   </div>
 
   <div class="container">
-  <div class="sidebar">
-    <ul>
-      <li>Reservar</li>
-      <li>Cancelar Reserva</li>
-      <li>Visualizar reservas</li>
-    </ul>
- </div>
- 
- <app-reservas></app-reservas>
- 
-</div>
+    <div class="sidebar">
+      <ul>
+        <li (click)="cambiarVista(1)">Reservar</li>
+        <li (click)="cambiarVista(2)">Visualizar reservas</li>
+        <li (click)="cambiarVista(3)">Servicios extra</li>
+      </ul>
+    </div>
+
+    @switch (vista) {
+      @case (1) {
+
+        <app-reservas></app-reservas>
+      }
+      @case (2) {
+        <app-reservas-usuario></app-reservas-usuario>
+      }
+    }
+
+
+
+  </div>
 
 </body>
 

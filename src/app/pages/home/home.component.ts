@@ -1,7 +1,7 @@
 import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef } from '@angular/core';
 import { ReservasComponent } from './../../pages/reservas/reservas.component';
+import { ReservasUsuarioComponent } from './../../pages/reservas-usuario/reservas-usuario.component';
 
 
 
@@ -11,7 +11,7 @@ import { ReservasComponent } from './../../pages/reservas/reservas.component';
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    imports: [CommonModule,ReservasComponent]
+    imports: [CommonModule,ReservasComponent, ReservasUsuarioComponent]
 })
 export class HomeComponent implements OnInit {
 
@@ -21,8 +21,13 @@ export class HomeComponent implements OnInit {
     // Agrega más imágenes según sea necesario
   ];
   currentImageIndex = 0;
+  vista = 1;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  cambiarVista(vista: number){
+    this.vista = vista;
+  }
+
+  constructor() {}
   
   ngOnInit(): void {
 
@@ -32,14 +37,12 @@ export class HomeComponent implements OnInit {
       this.changeImage();
     }, 5000);
 
-    this.getSalas();
-
   }
 
 
- 
-
-  salas: WritableSignal<Recurso[]> = signal([])
+  /* salas: WritableSignal<Recurso[]> = signal([])
+ */
+  
   cargando = signal(false);
 
 
@@ -55,25 +58,10 @@ export class HomeComponent implements OnInit {
     this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
   }
 
-  reservarRecurso(idRecurso: string, idTipoRecurso: string): void {
-    // Guardar en el localStorage
-    localStorage.setItem('id', `${idRecurso}`);
-    localStorage.setItem('idTipo', `${idTipoRecurso}`);
-    localStorage.setItem('Usuario', `208680026`);
-  }
 
-  async getSalas() {
-    this.cargando = signal(true);
-    const res = await fetch("https://back-project-johan.onrender.com/resources");
-    const resJson = await res.json();
-    const conversion = resJson.data.map((value: { recurso: Recurso; }) => value.recurso);
-    this.salas.set(conversion);
-    this.cargando = signal(false);
-    this.changeDetectorRef.detectChanges();
-  }
+  
 
-
-  async setSalasPrueba(filtro: string){
+/*   async setSalasPrueba(filtro: string){
     this.cargando = signal(true);
     const res = await fetch( `https://back-project-johan.onrender.com/resources/byid?idRecurso=${filtro}&idTipoR=Salon`);
     const resJson = await res.json();
@@ -82,21 +70,10 @@ export class HomeComponent implements OnInit {
     console.log(this.salas());
     this.cargando = signal(false);
     this.changeDetectorRef.detectChanges();
-  }
+  } */
 
 }
 
-
-
-
-interface Recurso {
-
-  idrecurso: string,
-  idtiporecursopkfk: string,
-  descripcion: string,
-  imagen: any
-
-}
 
 
 

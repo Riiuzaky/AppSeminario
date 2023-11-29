@@ -1,0 +1,27 @@
+<div class="content">
+    <table>
+        <thead>
+          <tr>
+            <th>ID RESERVA</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Cancelar reserva</th>
+            <th>Borrar reserva</th>
+            <!-- Añade más encabezados según sea necesario -->
+          </tr>
+        </thead>
+        <tbody>
+            @for(detalle of detallesReserva(); track $index){
+                <tr>
+                    <td>{{ detalle.idReserva }}</td>
+                    <td>{{ detalle.detalle.fi }}</td>
+                    <td>{{ detalle.detalle.ff }}</td>
+                    <td><button>Reservar</button></td>
+                    <td><button>Borrar</button></td>
+                </tr>
+                
+            }
+        </tbody>
+      </table>
+    
+</div>

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './../../pages/home/home.component';
-import { ChangeDetectorRef } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ServiceAuthComponent } from '../../components/service-auth/service-auth.component';
 
 @Component({
   selector: 'app-header',
@@ -13,27 +13,24 @@ import { ChangeDetectorRef } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @ViewChild('filtroTexto') filtroTexto!: ElementRef;
-  usuarioLogueado: boolean = false;
-  homeComp: HomeComponent;
+  private authSubscription!: Subscription;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-    this.homeComp = new HomeComponent(this.changeDetectorRef);
+  constructor(private authService: ServiceAuthComponent) {
+    
+  }
+
+  get usuarioLogueado(): boolean {
+    return this.authService.obtenerEstadoAutenticacion();
   }
 
 
-
   ngOnInit(): void {
-    // Verificar si hay un usuario logueado en el localStorage
-    const usuarioLocalStorage = localStorage.getItem('usuario');
-    if (usuarioLocalStorage) {
-      this.usuarioLogueado === true;
-    }
+    
   }
 
   filtrarSalas(): void {
     // Aquí puedes realizar acciones adicionales, como filtrar datos o realizar una búsqueda.
     const texto = this.filtroTexto.nativeElement.value;
-    this.homeComp.setSalasPrueba(texto);
   }
 
 }

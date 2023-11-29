@@ -2,6 +2,7 @@ import { Component, OnInit, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CalendarioComponent } from './../../components/calendario/calendario.component';
 import { ReservasServiceComponent } from './../../components/reservas-service/reservas-service.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-recurso',
@@ -15,7 +16,7 @@ export class RecursoComponent {
   fechaHoraInicio!: string;
   fechaHoraFin!: string;
 
-  constructor(private ReservasServiceComponent: ReservasServiceComponent) {
+  constructor(private ReservasServiceComponent: ReservasServiceComponent,private router: Router) {
     this.getRecurso();
   }
 
@@ -27,7 +28,14 @@ export class RecursoComponent {
     this.cargando = signal(true);
     const id = localStorage.getItem('id');
     const idTipo = localStorage.getItem('idTipo');
-    const res = await fetch(`https://back-project-johan.onrender.com/resources/byid?idRecurso=${id}&idTipoR=${idTipo}`);
+    const token = localStorage.getItem('token') || '';
+    const res = await fetch(`https://back-project-johan.onrender.com/resources/byid?idRecurso=${id}&idTipoR=${idTipo}`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': token
+      }
+    });
     const resJson = await res.json();
     const conversion = resJson.data.map((value: { recurso: Recurso; }) => value.recurso);
     console.log(conversion);
@@ -79,6 +87,7 @@ export class RecursoComponent {
     };
   
     this.ReservasServiceComponent.reservar(bookingData);
+    
   }
 
 }

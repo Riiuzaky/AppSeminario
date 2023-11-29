@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 
@@ -17,16 +18,18 @@ import { Injectable } from '@angular/core';
 })
 
 export class ReservasServiceComponent {
-  constructor() { }
+  constructor(private router: Router) { }
 
   async reservar(bookingData: Recurso) {
     const url = 'https://back-project-johan.onrender.com/bookings';
     console.log(bookingData);
+    const token = localStorage.getItem('token') || '';
     try {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-access-token': token
         },
 
         body: JSON.stringify(bookingData),
@@ -38,6 +41,8 @@ export class ReservasServiceComponent {
 
       const responseData = await response.json();
       console.log('Reserva exitosa:', responseData);
+      alert('Se realizo la reserva con exito');
+      this.router.navigateByUrl('/');
 
       
 

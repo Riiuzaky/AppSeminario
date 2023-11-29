@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Van & Banner</title>
+  <title>Recurso</title>
 </head>
 
 <body>
@@ -13,13 +13,23 @@
   <div class="content">
     @for(recurso of recurso(); track $index){
     <div class="card">
+      <div class="card-title">
+        <h1>Seleciona tu fecha y hora para el {{recurso.idtiporecursopkfk}}-{{recurso.idrecurso}}</h1>
+      </div>
+      
       <img src="{{recurso.imagen}}" class="card-img-top" alt="salon">
+
+      <div class="card-body">
+        <p>{{recurso.descripcion}}</p>
+      </div>
+      
     </div>
-    }
     <div class="calendario-content">
       <app-calendario (fechaHoraSeleccionada)="onFechaHoraSeleccionada($event)"></app-calendario>
       <!-- <button (click)="reservar()">Reservar</button> -->
     </div>
+    }
+    
   </div>
 </body>
 
