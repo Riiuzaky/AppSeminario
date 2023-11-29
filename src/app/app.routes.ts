@@ -8,7 +8,7 @@ export const routes: Routes = [
 
     {
         path: "",
-        component: HomeComponent
+        component: LoginComponent
     },
     {
         path: "Login",
@@ -21,6 +21,10 @@ export const routes: Routes = [
     {
         path: "recurso/:id",
         component: RecursoComponent
+    },
+    {
+        path: "home",
+        component: HomeComponent
     }
 
 

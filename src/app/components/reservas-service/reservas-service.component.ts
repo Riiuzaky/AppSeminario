@@ -42,7 +42,7 @@ export class ReservasServiceComponent {
       const responseData = await response.json();
       console.log('Reserva exitosa:', responseData);
       alert('Se realizo la reserva con exito');
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
 
       
 

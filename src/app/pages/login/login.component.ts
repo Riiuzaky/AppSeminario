@@ -68,7 +68,7 @@ export class LoginComponent {
           localStorage.setItem('Usuario', usuario);
           this.cargando = signal(false);
           this.authService.iniciarSesion();
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/home');
         } else {
           console.error('Error en la solicitud POST:', res.statusText);
           // Maneja el error según tus necesidades
